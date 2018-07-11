@@ -21,7 +21,8 @@ class NewList extends Component {
     this.state = {
       results: null,
       searchKey: '',
-      searchTerm: DEFAULT_QUERY
+      searchTerm: DEFAULT_QUERY,
+      error: null
     };
   }
 
@@ -54,7 +55,7 @@ class NewList extends Component {
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
-      .catch(e => e);
+      .catch(e => this.setState({ error: e }));
   }
 
   onDismiss = id => {
@@ -89,7 +90,8 @@ class NewList extends Component {
     const {
       searchTerm,
       results,
-      searchKey
+      searchKey,
+      error
     } = this.state;
 
     const page = (
@@ -103,7 +105,7 @@ class NewList extends Component {
       results[searchKey] &&
       results[searchKey].hits
     ) || [];
-
+    
     return (
       <div className="interactions">
         <Search 
@@ -113,11 +115,14 @@ class NewList extends Component {
         >
           Search
         </Search>
-        <Table 
+        { error ? <div className="interactions">
+            <p>Something went wrong.</p>
+          </div> : 
+          <Table 
           list={list}
           // pattern={searchTerm}
           onDismiss={this.onDismiss} 
-        />
+        />}
         <div className="interactions">
           <button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)} type="button">
             More
