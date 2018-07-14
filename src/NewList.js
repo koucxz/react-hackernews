@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import React, { Component } from 'react';
 import './NewList.css';
 // style
@@ -10,7 +11,9 @@ const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
 const PARAM_PAGE = 'page=';
+const PARAM_HPP = 'hitsPerPage=';
 const DEFAULT_QUERY = 'redux';
+const DEFAULT_HPP = '20';
 
 // const isSearched = searchTerm => item =>
 //   item.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -52,7 +55,7 @@ class NewList extends Component {
     });
   }
   fetchSearchTopStories = (searchTerm, page = 0) => {
-    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}`)
+    fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(e => this.setState({ error: e }));
@@ -133,7 +136,7 @@ class NewList extends Component {
   }
 }
 
-class Search extends Component {
+export class Search extends Component {
   render() {
     const { value, onChange, onSubmit, children } = this.props;
     return (
@@ -151,7 +154,7 @@ class Search extends Component {
   }
 }
 
-class Table extends Component {
+export class Table extends Component {
   render() {
     const { 
       list,
