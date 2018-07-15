@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './NewList.css';
 // style
 const largeColumn = {  width: '40%' };
@@ -154,6 +155,13 @@ export class Search extends Component {
   }
 }
 
+Search.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  children: PropTypes.node
+}
+
 export class Table extends Component {
   render() {
     const { 
@@ -186,5 +194,21 @@ export class Table extends Component {
     );
   }
 }
+
+Table.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      objectID: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      url: PropTypes.string,
+      num_comments: PropTypes.number,
+      points: PropTypes.number
+    })
+  ).isRequired,
+  onDismiss: PropTypes.func.isRequired,
+};
+Table.defaultProps = {
+  list: []
+};
 
 export default NewList;
