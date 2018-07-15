@@ -3,42 +3,9 @@ import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import NewList, { Search, Table } from './NewList';
+import Table from './index';
 // configs
 Enzyme.configure({ adapter: new Adapter() });
-
-
-describe('NewList', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<NewList />, div);
-  });
-  
-  test('has a valid snapshot', () => {
-    const component = renderer.create(
-      <NewList />
-    );
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-});
-
-describe('Search', () => {
-
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Search>Search</Search>, div);
-  });
-
-  test('has a valid snapshot', () => {
-    const component = renderer.create(
-      <Search>Search</Search>
-    );
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-});
 
 describe('Table', () => {
 
@@ -47,6 +14,7 @@ describe('Table', () => {
       { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y' },
       { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z' },
     ],
+    onDismiss: () => {}
   };
 
   it('renders without crashing', () => {
