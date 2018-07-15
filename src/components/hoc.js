@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const _Loading = () =>{
-  return <div>Loading ...</div>
+const Loading = () =>{
+  return <div><i className="fa fa-spinner" /> loading</div>
 }
 
 const withLoading = Component => ({isLoading, ...rest}) =>
 isLoading
-  ? <_Loading />
+  ? <Loading />
   : <Component { ...rest } />
 
 export { withLoading }

@@ -20,12 +20,105 @@ exports[`NewList has a valid snapshot 1`] = `
   </form>
   <div
     className="table"
-  />
+  >
+    <div
+      className="table-header"
+    >
+      <span
+        style={
+          Object {
+            "width": "40%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Title
+           
+          <i>
+             
+          </i>
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "30%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Author
+           
+          <i>
+             
+          </i>
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "10%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Comments
+           
+          <i>
+             
+          </i>
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "10%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Points
+           
+          <i>
+             
+          </i>
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "10%",
+          }
+        }
+      >
+        Archive
+      </span>
+    </div>
+  </div>
   <div
     className="interactions"
   >
     <div>
-      Loading ...
+      <i
+        className="fa fa-spinner"
+      />
+       loading
     </div>
   </div>
 </div>
