@@ -4,6 +4,7 @@ import './index.css';
 
 import Table from '../Table';
 import Search from '../Search';
+import { withLoading } from '../hoc'
 
 // api
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
@@ -14,11 +15,18 @@ const PARAM_HPP = 'hitsPerPage=';
 const DEFAULT_QUERY = 'redux';
 const DEFAULT_HPP = '20';
 
-const Loading = () =>{
-  return <div>Loading ...</div>
-}
+const Button = ({ onClick, className = '', children }) =>
+  <button
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
 
-  class NewList extends Component {
+const ButtonWithLoading = withLoading(Button);
+
+class NewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -131,12 +139,11 @@ const Loading = () =>{
           onDismiss={this.onDismiss} 
         />}
         <div className="interactions">
-          { isLoading
-            ? <Loading />
-            : <button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)} type="button">
-              More
-            </button>
-          }
+          <ButtonWithLoading
+            isLoading={isLoading}
+            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+            More
+          </ButtonWithLoading>
         </div>
       </div>
     );
