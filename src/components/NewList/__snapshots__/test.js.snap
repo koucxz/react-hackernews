@@ -7,8 +7,6 @@ exports[`NewList has a valid snapshot 1`] = `
   <form
     onSubmit={[Function]}
   >
-    Search
-     
     <input
       onChange={[Function]}
       type="text"
@@ -26,12 +24,9 @@ exports[`NewList has a valid snapshot 1`] = `
   <div
     className="interactions"
   >
-    <button
-      onClick={[Function]}
-      type="button"
-    >
-      More
-    </button>
+    <div>
+      Loading ...
+    </div>
   </div>
 </div>
 `;

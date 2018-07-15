@@ -14,16 +14,18 @@ const PARAM_HPP = 'hitsPerPage=';
 const DEFAULT_QUERY = 'redux';
 const DEFAULT_HPP = '20';
 
-// const isSearched = searchTerm => item =>
-//   item.title.toLowerCase().includes(searchTerm.toLowerCase());
+const Loading = () =>{
+  return <div>Loading ...</div>
+}
 
-class NewList extends Component {
+  class NewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
+      isLoading: false,
       error: null
     };
   }
@@ -50,10 +52,12 @@ class NewList extends Component {
       results: {
         ...results,
         [searchKey]: { hits: moreHits, page }
-      }
+      },
+      isLoading: false
     });
   }
   fetchSearchTopStories = (searchTerm, page = 0) => {
+    this.setState({ isLoading: true });
     fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
@@ -93,7 +97,8 @@ class NewList extends Component {
       searchTerm,
       results,
       searchKey,
-      error
+      error,
+      isLoading
     } = this.state;
 
     const page = (
@@ -126,9 +131,12 @@ class NewList extends Component {
           onDismiss={this.onDismiss} 
         />}
         <div className="interactions">
-          <button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)} type="button">
-            More
-          </button>
+          { isLoading
+            ? <Loading />
+            : <button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)} type="button">
+              More
+            </button>
+          }
         </div>
       </div>
     );

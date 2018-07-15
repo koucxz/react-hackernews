@@ -16,7 +16,6 @@ class Table extends Component {
     } = this.props;
     return (
       <div className="table">
-        {/* {list.filter(isSearched(pattern)).map(item => */}
         {list.map(item =>
           <div key={item.objectID} className="table-row">
             <span style={largeColumn}>

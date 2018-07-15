@@ -4,8 +4,6 @@ exports[`Search has a valid snapshot 1`] = `
 <form
   onSubmit={undefined}
 >
-  Search
-   
   <input
     onChange={undefined}
     type="text"
