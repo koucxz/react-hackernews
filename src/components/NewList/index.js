@@ -33,8 +33,6 @@ class NewList extends Component {
       results: null,
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
-      sortKey: 'NONE',
-      isSortReverse: false,
       isLoading: false,
       error: null
     };
@@ -101,18 +99,12 @@ class NewList extends Component {
       this.fetchSearchTopStories(searchTerm);
     }
   }
-  onSort = (sortKey) => {
-    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
-    this.setState({ sortKey, isSortReverse  });
-  }
 
   render() {
     const {
       searchTerm,
       results,
       searchKey,
-      sortKey,
-      isSortReverse,
       error,
       isLoading
     } = this.state;
@@ -143,9 +135,6 @@ class NewList extends Component {
           </div> : 
           <Table 
           list={list}
-          sortKey={sortKey}
-          isSortReverse={isSortReverse}
-          onSort={this.onSort}
           onDismiss={this.onDismiss} 
         />}
         <div className="interactions">

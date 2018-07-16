@@ -25,7 +25,9 @@ class Sort extends Component {
       >
         {children}&thinsp;
         <SortIcon
-          {...this.props} />
+          sortKey={sortKey}
+          activeSortKey={activeSortKey}
+          isSortReverse={isSortReverse} />
       </button>
     );
   }
