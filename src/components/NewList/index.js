@@ -26,6 +26,26 @@ const Button = ({ onClick, className = '', children }) =>
 
 const ButtonWithLoading = withLoading(Button);
 
+const updateSearchTopStoriesState = (hits, page) => (prevState) => {
+  const { searchKey, results } = prevState;
+
+  const oldHits = results && results[searchKey]
+    ? results[searchKey].hits
+    : [];
+
+  const updatedHits = [
+    ...oldHits,
+    ...hits
+  ];
+
+  return {
+    results: {
+      ...results,
+      [searchKey]: { hits: updatedHits, page }
+    },
+    isLoading: false
+  };
+};
 class NewList extends Component {
   constructor(props) {
     super(props);
@@ -46,23 +66,7 @@ class NewList extends Component {
 
   setSearchTopStories = result => {
     const { hits, page } = result;
-    const { searchKey, results } = this.state;
-
-    const oldHits = results && results[searchKey]
-      ? results[searchKey].hits
-      : [];
-    const moreHits = [
-      ...oldHits,
-      ...hits
-    ];
-
-    this.setState({
-      results: {
-        ...results,
-        [searchKey]: { hits: moreHits, page }
-      },
-      isLoading: false
-    });
+    this.setState(updateSearchTopStoriesState(hits, page));
   }
   fetchSearchTopStories = (searchTerm, page = 0) => {
     this.setState({ isLoading: true });
