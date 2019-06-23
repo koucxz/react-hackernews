@@ -2,17 +2,20 @@
   "name": "hackernews",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://koucxz.github.io/react-hackernews",
   "dependencies": {
     "classnames": "^2.2.6",
     "font-awesome": "^4.7.0",
     "isomorphic-fetch": "2.2.1",
-    "lodash": "^4.17.10",
-    "prop-types": "^15.6.2",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.7.2",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-scripts": "1.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -21,6 +24,7 @@
   "devDependencies": {
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
+    "gh-pages": "^2.0.1",
     "react-test-renderer": "16.4.1"
   }
 }
